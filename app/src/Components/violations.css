@@ -45,3 +45,8 @@
 .button-add:active  {
     background-color: #1d4a8c;
 }
+
+.delete-button{
+    all: unset;
+    cursor: pointer;
+}

@@ -1,0 +1,37 @@
+.input-block{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.underline {
+    position: relative;
+  }
+  
+  .underline input {
+    border: none;
+    border-bottom: 1px solid #000; /* Цвет и стиль линии */
+    padding-bottom: 5px; /* Расстояние от линии до текста */
+    width: 100%; /* Ширина линии */
+  }
+  
+  .underline.error input {
+    border-color: red; /* Изменение цвета линии при ошибке */
+  }
+
+  .button-reset {
+    /* Установка стандартных значений */
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    /* Дополнительные стили, если необходимо */
+  }

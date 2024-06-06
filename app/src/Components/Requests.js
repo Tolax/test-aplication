@@ -2,7 +2,7 @@ import React from "react";
 import "./requests.css";
 import body from "../icons/body.png";
 
-export default function Requests() {
+export default function Requests({countP,countKC,countSP,countI}) {
   return (
     <div className="block-requests">
         <div className="requests-header">
@@ -40,35 +40,35 @@ export default function Requests() {
           <div className="menu-body-line">
             <div>Э</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
-            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
+            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>{countI}</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
             <div>0</div>
           </div>
           <div className="menu-body-line">
             <div>П</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
-            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
+            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>{countP}</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
             <div>0</div>
           </div>
           <div className="menu-body-line">
             <div>СЦБ</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
-            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
+            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>{countSP}</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
             <div>0</div>
           </div>
           <div className="menu-body-line">
             <div>КЦ</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
-            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
+            <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>{countKC}</div>
             <div style={{ borderBottom: "2px solid #276399", marginBottom: "4px" }}>0</div>
             <div>0</div>
           </div>
           <div className="menu-body-line-results">
             <div>Всего</div>
             <div>0</div>
-            <div>0</div>
+            <div>{countKC+countSP+countP+countI}</div>
             <div>0</div>
             <div>0</div>
           </div>
