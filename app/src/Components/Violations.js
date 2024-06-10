@@ -7,7 +7,7 @@ import Requests from "./Requests";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function Violations() {
+export default function Violations({selectedDate}) {
   const [isOpen, setIsOpen] = useState(false);
   const [array, setArray] = useState([]);
   const [formData, setFormData] = useState({
@@ -20,12 +20,11 @@ export default function Violations() {
     orderedBuses: "",
     compensatory: "",
   });
-  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     if (selectedDate) {
       const formattedDate = selectedDate.toLocaleDateString("en-GB");
-      const storedData = localStorage.getItem(formattedDate);
+      const storedData = localStorage.getItem(`violations_${formattedDate}`);
       if (storedData) {
         setArray(JSON.parse(storedData));
       } else {
@@ -37,7 +36,7 @@ export default function Violations() {
   useEffect(() => {
     if (selectedDate) {
       const formattedDate = selectedDate.toLocaleDateString("en-GB");
-      localStorage.setItem(formattedDate, JSON.stringify(array));
+      localStorage.setItem(`violations_${formattedDate}`, JSON.stringify(array));
     }
   }, [array, selectedDate]);
 
@@ -53,22 +52,10 @@ export default function Violations() {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const countP = array.filter((item) => item.type === "П").length;
-  const countI = array.filter((item) => item.type === "Э").length;
-  const countSP = array.filter((item) => item.type === "СЦБ").length;
-  const countKC = array.filter((item) => item.type === "КЦ").length;
 
   return (
     <div>
-        <DatePicker
-          selected={selectedDate}
-          onChange={handleDateChange}
-          dateFormat="dd/MM/yyyy"
-        />
+      {!selectedDate ? <div>Выберите дату чтобы добавить запись</div> : null}
       <div className="block-violations">
         <div className="requests-header">
           <div style={{ display: "flex", fontSize: "30px", color: "#276399" }}>
@@ -83,7 +70,10 @@ export default function Violations() {
               display: "flex",
               alignItems: "center",
             }}>
-            <button onClick={openModal} className="button-add">
+            <button
+              onClick={openModal}
+              className="button-add"
+              disabled={!selectedDate}>
               + добавить
             </button>
             Всего {array.length} шт.
@@ -196,7 +186,6 @@ export default function Violations() {
           />
         )}
       </div>
-      <Requests countP={countP} countI={countI} countSP={countSP} countKC={countKC}/>
     </div>
   );
 }
